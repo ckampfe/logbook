@@ -20,6 +20,10 @@ async function doOpenTodaysLogbook() {
     const config = vscode.workspace.getConfiguration('logbook');
     let logbookDirectory: string = config.get('directory');
 
+    if(logbookDirectory === '') {
+        return vscode.window.showErrorMessage('Logbook config setting "logbook.directory" cannot be empty!');
+    }
+
     // make sure there's a trailing slash
     if(!logbookDirectory.endsWith('/')) {
         logbookDirectory = logbookDirectory + '/'
@@ -32,38 +36,42 @@ async function doOpenTodaysLogbook() {
     const day = date.getDate();
 
     const todaysLogbookFile = `${year}-${month}-${day}.md`;
-    const fullLogBookFile = logbookDirectory + todaysLogbookFile;
+    const logbookFilePath = logbookDirectory + todaysLogbookFile;
 
-    fs.exists(fullLogBookFile, (fileExists) => {
+    fs.exists(logbookFilePath, (fileExists) => {
         if(fileExists) {
-            loadFile(fullLogBookFile);
+            loadFile(logbookFilePath);
         } else {
-            createFile(fullLogBookFile);
-            loadFile(fullLogBookFile);
+            createFile(logbookFilePath);
+            loadFile(logbookFilePath);
         }
     });
 }
 
  async function doOpenLogbookDirectory() {
     const config = vscode.workspace.getConfiguration('logbook');
-    const logbookDirectory = vscode.Uri.parse(config.get('directory'));
+    const logbookDirectory: string = config.get('directory');
     const openInNewWindow: boolean = config.get('newWindow');
+
+    if(logbookDirectory === '') {
+        return vscode.window.showErrorMessage('Logbook config setting "logbook.directory" cannot be empty!');
+    }
 
     await vscode.commands.executeCommand(
         'vscode.openFolder',
-        logbookDirectory,
+        vscode.Uri.parse(logbookDirectory),
         openInNewWindow // whether the logbook directory should open in a new window or not.
     );
 }
 
-function createFile(filename) {
+function createFile(path) {
     // `touch`, basically. probably a better way to do this.
-    const fd = fs.openSync(filename, 'w');
+    const fd = fs.openSync(path, 'w');
     fs.closeSync(fd);
 }
 
-function loadFile(filename) {
-    const documentPromise = vscode.workspace.openTextDocument(filename);
+function loadFile(path) {
+    const documentPromise = vscode.workspace.openTextDocument(path);
     documentPromise.then((document) => vscode.window.showTextDocument(document));
 }
 
