@@ -37,7 +37,7 @@
                         "type": "string",
                         "description": "The absolute path of the directory where your logbook files live\nThis directory must alredy exist."
                     },
-                    "logbookDirectory.directoryInNewWindow": {
+                    "logbook.openInNewWindow": {
                         "type": "boolean",
                         "description": "Should the logbook directory open in a new window.\nDefaults to true.",
                         "default": true

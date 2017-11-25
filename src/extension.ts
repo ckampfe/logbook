@@ -51,7 +51,7 @@ async function doOpenTodaysLogbook() {
  async function doOpenLogbookDirectory() {
     const config = vscode.workspace.getConfiguration('logbook');
     const logbookDirectory: string = config.get('directory');
-    const openInNewWindow: boolean = config.get('newWindow');
+    const openInNewWindow: boolean = config.get('openInNewWindow');
 
     if(logbookDirectory === '') {
         return vscode.window.showErrorMessage('Logbook config setting "logbook.directory" cannot be empty!');
