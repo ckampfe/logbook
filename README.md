@@ -1,65 +1,26 @@
 # logbook README
 
-This is the README for your extension "logbook". After writing up a brief description, we recommend including the following sections.
+A simple way to keep logs of your daily work.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+* `Logbook: Open Today's Logbook`: open a blank file named `YYYY-MM-DD.md` where year, month, and day are sourced from the local datetime. This file will be opened if it exists, and created in the `logbook.directory` if it does not.
+* `Logbook: Open Logbook Directory`: open the `logbook.directory`. Defaults to opening in a new window, but can be set to take over the current window.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Before use, you must set the `logbook.directory` to a directory where you wish to store your logbook files.
+The extension will show an error message and will not function if this setting has not been set.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `logbook.directory`: the directory where your logbook files are stored. This cannot be empty/null.
+* `logbook.openInNewWindow`: whether to open the logbook directory in a new window. Defaults to true.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Hello, World!
