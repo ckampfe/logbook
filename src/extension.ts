@@ -18,16 +18,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 async function doOpenTodaysLogbook() {
     const config = vscode.workspace.getConfiguration('logbook');
-    let logbookDirectory: string = config.get('directory');
+    let logbookDirectory: string = config.get('directory', '');
 
     if(logbookDirectory === '') {
         return vscode.window.showErrorMessage('Logbook config setting "logbook.directory" cannot be empty!');
     }
 
     // make sure there's a trailing slash
-    if(!logbookDirectory.endsWith('/')) {
-        logbookDirectory = logbookDirectory + '/'
-    }
+    const logbookDirectoryWithTrailingSlash =
+        !logbookDirectory.endsWith('/') ? logbookDirectory + '/' : logbookDirectory
 
     // today's date
     const date = new Date()
@@ -36,7 +35,7 @@ async function doOpenTodaysLogbook() {
     const day = date.getDate();
 
     const todaysLogbookFile = `${year}-${month}-${day}.md`;
-    const logbookFilePath = logbookDirectory + todaysLogbookFile;
+    const logbookFilePath = logbookDirectoryWithTrailingSlash + todaysLogbookFile;
 
     fs.exists(logbookFilePath, (fileExists) => {
         if(fileExists) {
@@ -50,8 +49,8 @@ async function doOpenTodaysLogbook() {
 
  async function doOpenLogbookDirectory() {
     const config = vscode.workspace.getConfiguration('logbook');
-    const logbookDirectory: string = config.get('directory');
-    const openInNewWindow: boolean = config.get('openInNewWindow');
+    const logbookDirectory: string = config.get('directory', '');
+    const openInNewWindow: boolean = config.get('openInNewWindow', true);
 
     if(logbookDirectory === '') {
         return vscode.window.showErrorMessage('Logbook config setting "logbook.directory" cannot be empty!');
@@ -64,13 +63,13 @@ async function doOpenTodaysLogbook() {
     );
 }
 
-function createFile(path) {
+function createFile(path: string) {
     // `touch`, basically. probably a better way to do this.
     const fd = fs.openSync(path, 'w');
     fs.closeSync(fd);
 }
 
-function loadFile(path) {
+function loadFile(path: string) {
     const documentPromise = vscode.workspace.openTextDocument(path);
     documentPromise.then((document) => vscode.window.showTextDocument(document));
 }
