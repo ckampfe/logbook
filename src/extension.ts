@@ -58,7 +58,7 @@ async function doOpenTodaysLogbook() {
 
     await vscode.commands.executeCommand(
         'vscode.openFolder',
-        vscode.Uri.parse(logbookDirectory),
+        vscode.Uri.file(logbookDirectory),
         openInNewWindow // whether the logbook directory should open in a new window or not.
     );
 }
