@@ -7,6 +7,10 @@
     "engines": {
         "vscode": "^1.18.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ckampfe/logbook.git"
+    },
     "categories": [
         "Other"
     ],
@@ -54,9 +58,9 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
+        "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21"
     }
 }
