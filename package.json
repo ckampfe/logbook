@@ -2,7 +2,7 @@
     "name": "logbook",
     "displayName": "logbook",
     "description": "a daily logbook",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "ckampfe",
     "engines": {
         "vscode": "^1.18.0"
