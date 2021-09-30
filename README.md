@@ -16,6 +16,8 @@ The extension will show an error message and will not function if this setting h
 
 * `logbook.directory`: the directory where your logbook files are stored. This cannot be empty/null.
 * `logbook.openInNewWindow`: whether to open the logbook directory in a new window. Defaults to true.
+* `logbook.mode`: the rotation mode of the logbook (daily or weekly).
+* `logbook.prefix`: whether to prefix the filename of the logbook.
 
 ## Known Issues
 
